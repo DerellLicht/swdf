@@ -291,14 +291,15 @@ int main(int argc, char **argv)
    int result = read_files(file_spec);
    if (result < 0) {
       printf("filespec: %s, %s\n", file_spec, strerror(-result));
+      return -result;
    }
-   else {
-      printf("filespec: %s, %u found\n", file_spec, filecount);
-      if (filecount > 0) {
-         for (ffdata *ftemp = ftop; ftemp != NULL; ftemp = ftemp->next) {
-            // printf("%s\n", ftemp->filename);
-            swdf_func(ftemp->filename);
-         }
+
+   //  parse each file and apply the working function
+   printf("filespec: %s, %u found\n", file_spec, filecount);
+   if (filecount > 0) {
+      for (ffdata *ftemp = ftop; ftemp != NULL; ftemp = ftemp->next) {
+         // printf("%s\n", ftemp->filename);
+         swdf_func(ftemp->filename);
       }
    }
    return 0;
