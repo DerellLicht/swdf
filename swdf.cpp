@@ -281,7 +281,7 @@ int main(int argc, char **argv)
    }
 
    if (file_spec[0] == 0) {
-      puts("Usage: readall <filespec>");
+      puts("Usage: swdf <filespec>");
       return -1;
    }
 
