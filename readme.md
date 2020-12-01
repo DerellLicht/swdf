@@ -1,11 +1,11 @@
-### swdf - Stalker Weapon/Armour Degradation Fix
+## swdf - Stalker Weapon/Armour Degradation Fix
 
 This scans through all .ltx files in current directory, searching for various
 target lines, and setting parameters to 0.0.<br>
 This is the mechanism for disabling weapon/armour degradation in S.T.A.L.K.E.R. games.
 Currently, this works for weapons and outfits .ltx files.
 
-##  Example output for weapons file
+###  Example output for weapons file
 
         filespec: *.ltx, 52 found
 
@@ -15,7 +15,7 @@ Currently, this works for weapons and outfits .ltx files.
         condition_queue_shot_dec = 0.0 ;= 0.0 ;= 0.0 ;= 0.0 ;= 0.0008
         condition_shot_dec = 0.0 ;= 0.0 ;= 0.0 ;= 0.0 ;= 0.0008
 
-##  Example output for armour file
+###  Example output for armour file
 
         filespec: *.ltx, 22 found
 
