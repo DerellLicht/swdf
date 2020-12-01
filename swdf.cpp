@@ -189,8 +189,10 @@ search_next_file:
 
 //*****************************************************************
 static char const * const tgtstr[] = {
+//  weapon tags
 "condition_queue_shot_dec",
 "condition_shot_dec",
+//  armour tags
 "burn_immunity",
 "chemical_burn_immunity",
 "explosion_immunity",
