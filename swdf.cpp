@@ -67,11 +67,11 @@ ffdata *ftail = NULL;
 //lint -esym(714, strip_leading_spaces)
 //lint -esym(759, strip_leading_spaces)
 //lint -esym(765, strip_leading_spaces)
-char *strip_leading_spaces(char *str)
+char const *strip_leading_spaces(char const * const str)
 {
    if (str == 0)
       return 0;
-   char *tptr = str ;
+   char const *tptr = str ;
    while (LOOP_FOREVER) {
       if (*tptr == 0)
          return tptr;
@@ -241,14 +241,14 @@ int swdf_func(char *infile)
    char inpstr[MAX_LINE_LEN+1];
    char outpstr[MAX_LINE_LEN+1];
    while (fgets(inpstr, MAX_LINE_LEN, infd) != NULL) {
-      //  skip any leading spaces
-      char *hd = strip_leading_spaces(inpstr);
+      //  skip any leading whitespace
+      char const *hd = strip_leading_spaces(inpstr);
 
       bool found = false ;
       uint idx ;
       for (idx=0; tgtstr[idx] != NULL; idx++) {
          if (strncmp(hd, tgtstr[idx], strlen(tgtstr[idx])) == 0) {
-            char *tl = strchr(hd, '=');
+            char const *tl = strchr(hd, '=');
             if (tl == NULL) {
                puts(inpstr);
                printf("invalid string format!!  aborting...\n");
@@ -261,6 +261,7 @@ int swdf_func(char *infile)
             break;
          }
       }
+      //  everything *except* target strings should just get copied to output
       if (!found) {
          fputs(inpstr, outfd);
       }
