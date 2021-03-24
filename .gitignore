@@ -2,4 +2,4 @@ armour/
 weapons/
 *.exe
 *.txt
-
+_lint.tmp

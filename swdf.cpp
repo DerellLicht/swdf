@@ -298,13 +298,14 @@ int main(int argc, char **argv)
       return -1;
    }
 
+   //  build linked list of matching files
    int result = read_files(file_spec);
    if (result < 0) {
       printf("filespec: %s, %s\n", file_spec, strerror(-result));
       return -result;
    }
 
-   //  parse each file and apply the working function
+   //  parse each file in list and apply the working function
    printf("filespec: %s, %u found\n", file_spec, filecount);
    if (filecount > 0) {
       for (ffdata *ftemp = ftop; ftemp != NULL; ftemp = ftemp->next) {
