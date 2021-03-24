@@ -19,7 +19,7 @@ clean:
 	rm -f *.exe
 
 lint:
-	\lint9\lint-nt +v -width(160,4) -i\lint9 mingw.lnt swdf.cpp
+        c:\lint9\lint-nt +v -width(160,4) -ic:\lint9 mingw.lnt swdf.cpp
 
 swdf.exe: swdf.cpp
 	$(TOOLS)\g++ $(CFLAGS) -Weffc++ $< -o $@

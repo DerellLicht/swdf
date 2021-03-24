@@ -1,5 +1,5 @@
 //**********************************************************************************
-//  swdf.cpp - Stalker Weapon Degradation Fix
+//  swdf.cpp - Stalker equipment Degradation Fix
 //  
 //  Written by:  Derell Licht
 //  build:  g++ -Wall -O2 -s swdf.cpp -o swdf.exe
@@ -64,9 +64,11 @@ ffdata *ftop  = NULL;
 ffdata *ftail = NULL;
 
 //**********************************************************************
-//lint -esym(714, strip_leading_spaces)
-//lint -esym(759, strip_leading_spaces)
-//lint -esym(765, strip_leading_spaces)
+//  skips past leadings spaces and hard tabs in a line,
+//  so program act on actual data.
+//  Note that the line is not actually modified, this just returns a pointer,
+//  so original line with spaces can be retained, if required.
+//**********************************************************************
 char const *strip_leading_spaces(char const * const str)
 {
    if (str == 0)
@@ -81,6 +83,8 @@ char const *strip_leading_spaces(char const * const str)
    }
 }
 
+//**********************************************************************************
+//  build a linked-list of all matching filenames
 //**********************************************************************************
 int read_files(char *filespec)
 {
@@ -188,6 +192,8 @@ search_next_file:
 }
 
 //*****************************************************************
+//  lines which will be modified by this program
+//*****************************************************************
 static char const * const tgtstr[] = {
 //  weapon tags
 "condition_queue_shot_dec",
@@ -204,6 +210,10 @@ static char const * const tgtstr[] = {
 "wound_immunity",
 NULL };
 
+//*****************************************************************
+//  scan all lines in one file.
+//  Original file is renamed to <filename.ext.bak> before reading.
+//  Modified filename will have original <filename.ext>
 //*****************************************************************
 int swdf_func(char *infile)
 {
