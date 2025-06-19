@@ -7,11 +7,6 @@
 
 #include <windows.h>
 #include <stdio.h>
-#include <stdlib.h>  //  PATH_MAX
-
-#ifndef PATH_MAX
-#define PATH_MAX  260
-#endif
 
 typedef  unsigned char  uchar ;
 typedef  unsigned int   uint ;
@@ -25,6 +20,7 @@ typedef  unsigned long  ulong ;
 #define FILE_ATTRIBUTE_VOLID  0x00000008
 
 #define  MAX_FILE_LEN   1024
+#define  MAX_PATH_LEN   1024
 #define  MAX_LINE_LEN   1024
 
 WIN32_FIND_DATA fdata ; //  long-filename file struct
@@ -247,7 +243,7 @@ int swdf_func(char *infile)
       return -errno;
    }
 
-//condition_shot_dec      = 0.0001 ;увеличение износа при каждом выстреле
+//condition_shot_dec      = 0.0001 ;пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
    char inpstr[MAX_LINE_LEN+1];
    char outpstr[MAX_LINE_LEN+1];
    while (fgets(inpstr, MAX_LINE_LEN, infd) != NULL) {
@@ -282,15 +278,15 @@ int swdf_func(char *infile)
 }
 
 //**********************************************************************************
-char file_spec[PATH_MAX+1] = "" ;
+char file_spec[MAX_PATH_LEN+1] = "" ;
 
 int main(int argc, char **argv)
 {
    int idx ;
    for (idx=1; idx<argc; idx++) {
       char *p = argv[idx] ;
-      strncpy(file_spec, p, PATH_MAX);
-      file_spec[PATH_MAX] = 0 ;
+      strncpy(file_spec, p, MAX_PATH_LEN);
+      file_spec[MAX_PATH_LEN] = 0 ;
    }
 
    if (file_spec[0] == 0) {

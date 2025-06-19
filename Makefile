@@ -1,17 +1,18 @@
 USE_DEBUG = NO
 USE_64BIT = NO
 
+ifeq ($(USE_64BIT),YES)
+TOOLS=c:\tdm64\bin
+else
+TOOLS=d:\tdm32\bin
+endif
+
 ifeq ($(USE_DEBUG),YES)
 CFLAGS=-Wall -O -g
 else
 CFLAGS=-Wall -O3 -s
 endif
-
-ifeq ($(USE_64BIT),YES)
-TOOLS=c:\tdm64\bin
-else
-TOOLS=c:\mingw\bin
-endif
+CFLAGS += -Weffc++ 
 
 all: swdf.exe
 
@@ -19,8 +20,8 @@ clean:
 	rm -f *.exe
 
 lint:
-        c:\lint9\lint-nt +v -width(160,4) -ic:\lint9 mingw.lnt swdf.cpp
+	cmd /C "c:\lint9\lint-nt +v -width(160,4) $(LiFLAGS) -ic:\lint9 mingw.lnt -os(_lint.tmp) swdf.cpp"
 
 swdf.exe: swdf.cpp
-	$(TOOLS)\g++ $(CFLAGS) -Weffc++ $< -o $@
+	$(TOOLS)\g++ $(CFLAGS) $< -o $@
 
